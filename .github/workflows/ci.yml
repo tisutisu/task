@@ -1,4 +1,4 @@
-name: Go
+name: Build_Test_Workflow
 
 on:
   push:
@@ -23,3 +23,6 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+    
+    - name: Print
+      run: echo ${{ github.event.pull_request.user.login }}
