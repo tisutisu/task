@@ -29,3 +29,6 @@ jobs:
     
     - name: Print Href
       run: echo ${{ github.event.pull_request._links.self.href }}
+    
+    - name: Event Number
+      run: echo ${{ github.event.number }}
