@@ -24,5 +24,8 @@ jobs:
     - name: Test
       run: go test -v ./...
     
-    - name: Print
+    - name: Print Username
       run: echo ${{ github.event.pull_request.user.login }}
+    
+    - name: Print Href
+      run: echo ${{ github.event.pull_request._links.self.href }}
