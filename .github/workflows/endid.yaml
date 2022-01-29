@@ -1,0 +1,15 @@
+name: EndDid Workflow
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Notify via Endid
+
+      uses: endid-app/endid-github-action@master
+
+      with:
+        token: ${{ secrets.endid_token }}
+        status: ${{ job.status }}
