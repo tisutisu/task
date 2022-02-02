@@ -7,12 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Sends a message to Slack when a push, a pull request or an issue is made
     steps:
+      - name: Run All Tests
+        id: run_all_tests
+        run: |
+          echo "${{github.repository}}"
       - name: Send message to Slack API
         uses: archive/github-actions-slack@v2.0.0
         id: notify
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: U02CNJ70PB7
-          slack-text: Testing! '${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}' ❌
+          slack-text: ${{ steps.run_all_tests.conclusion }} ! Nightly test for certification flow. See '${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}' for more info
       - name: Result from "Send Message"
         run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
